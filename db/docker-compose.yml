@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+    mysql:
+        image: mysql
+        container_name: mysql
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_DATABASE: node_mysql_docker
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - node-mysql-docker
+
+networks:
+    node-mysql-docker:
+        name: node-mysql-docker
